@@ -1,0 +1,44 @@
+<html>
+  <head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+   </script>
+  </head>
+ <body>
+   <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+   <script>
+     const request = new Request("https://databinding.d.mik.pl.ua", {
+  method: "GET",
+});
+
+fetch(request).then((response) => {
+	return response.json()
+}).then((json) => {
+	let xValues = json.map((x) => x.date);
+  let yValues = json.map((x) => x.count);
+
+	new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        data: yValues,
+        fill: false,
+        borderColor: 'green',
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "Databinding removal progress"
+      }
+    }
+  });
+}).catch((err) => {
+	consonle.log(err);
+});
+
+
+   </script>
+ </body>
+</html>
