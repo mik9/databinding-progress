@@ -27,18 +27,29 @@ fetch(request).then((response) => {
       }]
     },
     options: {
+      responsive: true,
       legend: {display: false},
       title: {
         display: true,
         text: "Databinding removal progress"
+      },
+      scales: {
+        yAxes: [{
+          axis: 'y',
+          type: 'linear',
+          autoSkip: true,
+          min: 0,
+          max: 1400,
+          ticks: {
+            maxTicksLimit: 5
+          }
+        }]
       }
     }
   });
 }).catch((err) => {
 	consonle.log(err);
 });
-
-
    </script>
  </body>
 </html>
